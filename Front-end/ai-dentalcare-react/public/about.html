@@ -1,0 +1,487 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dentora-Dental Care Application </title>
+    <!-- google font -->
+    <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="assets/css/style-starter.css">
+    <style>
+        .highlightedText {
+            background-color: yellow;
+        }
+
+        #upArrow,
+        #downArrow {
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- header -->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <a class="navbar-brand" href="index.html">
+                    <i class="fas fa-tooth"></i>Dentora
+                </a>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav ms-auto me-2 my-2 my-lg-0 navbar-nav-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="scan.html">AI Scan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="services.html">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Remidies.html">Remidies</a>
+                        </li>
+                       
+                    </ul>
+                    
+                    
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!-- //header -->
+
+    <!-- JavaScript for the Search Functionality -->
+    <script>
+        function searchWithinPage() {
+            var searchText = document.getElementById("searchInput").value.trim();
+
+            if (searchText !== "") {
+                var content = document.body.textContent || document.body.innerText;
+                var searchTerm = new RegExp(searchText, "gi"); // Create a regular expression for global and case-insensitive search
+
+                var matches = content.match(searchTerm);
+
+                if (matches) {
+                    var count = matches.length;
+
+                    // Highlight the matches using a CSS class
+                    document.body.innerHTML = document.body.innerHTML.replace(searchTerm, '<span class="highlightedText">$&</span>');
+
+                    alert("Found " + count + " matches.");
+                    scrollToFirstMatch(searchTerm);
+                } else {
+                    alert("No matches found.");
+                    hideNavigationArrows();
+                }
+            } else {
+                alert("Please enter a search term.");
+            }
+
+            return false; // Prevent form submission from changing the URL
+        }
+
+        function scrollToFirstMatch(searchTerm) {
+            var allMatches = document.querySelectorAll('.highlightedText');
+
+            if (allMatches.length > 0) {
+                var firstMatch = allMatches[0];
+                var position = firstMatch.getBoundingClientRect().top + window.pageYOffset;
+
+                window.scrollTo({
+                    top: position,
+                    behavior: 'smooth'
+                });
+
+                showNavigationArrows();
+            }
+        }
+
+        function showNavigationArrows() {
+            document.getElementById('upArrow').style.display = 'block';
+            document.getElementById('downArrow').style.display = 'block';
+        }
+
+        function hideNavigationArrows() {
+            document.getElementById('upArrow').style.display = 'none';
+            document.getElementById('downArrow').style.display = 'none';
+        }
+
+        document.getElementById('upArrow').addEventListener('click', function () {
+            window.scrollBy(0, -window.innerHeight / 2);
+        });
+
+        document.getElementById('downArrow').addEventListener('click', function () {
+            window.scrollBy(0, window.innerHeight / 2);
+        });
+
+        // Navigate to first search result on page load
+        window.onload = function () {
+            var urlParams = new URLSearchParams(window.location.search);
+            var searchTerm = urlParams.get('search');
+            if (searchTerm) {
+                document.getElementById('searchInput').value = searchTerm;
+                searchWithinPage();
+            }
+        };
+    </script>
+    <!-- End of JavaScript for the Search Functionality -->
+
+    <!-- Scroll navigation arrows -->
+    <div id="upArrow">&#8593;</div>
+    <div id="downArrow">&#8595;</div>
+    <!-- End of Scroll navigation arrows -->
+
+
+    <!-- inner banner -->
+    <section class="inner-banner py-5">
+        <div class="w3l-breadcrumb py-lg-5">
+            <div class="container pt-4 pb-sm-4">
+                <h4 class="inner-text-title font-weight-bold pt-sm-5 pt-4">About</h4>
+                <ul class="breadcrumbs-custom-path">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><i class="fas fa-angle-right mx-2"></i>About</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- //inner banner -->
+
+    <!-- aboutblock1 section -->
+    <section class="w3l-homeblock1 py-5" id="about">
+        <div class="container py-md-5 py-4">
+            <div class="row align-items-center">
+                <div class="col-lg-6 pe-xl-5">
+                    <h3 class="title-style mb-3">Welcome to <span>Dentora</span></h3>
+     <p>AI-driven platform analyzes dental images to detect issues like cavities and gum disease.Generate detailed reports with problem identification, remedies, and progress tracking , Recommend affordable clinics based on user budget and dental condition</p>                   
+                    <a href="services.html" class="btn btn-style mt-4">Discover More</a>
+                </div>
+                <div class="col-lg-6 homeaboutblock mt-lg-0 mt-5">
+                    <img src="assets/images/about.jpg" class="img-fluid radius-image" alt="image">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //aboutblock1 section -->
+
+    <!-- features section -->
+    <section class="w3l-features py-5" id="features">
+        <div class="container py-md-5 py-4">
+            <h3 class="title-style text-center text-white mb-sm-5 mb-4">Our Awesome <span>Features</span></h3>
+            <div class="row text-center">
+                <div class="col-lg-4 col-sm-6">
+                    <div class="feature-gd feature-gd-2">
+                        <div class="icon">
+                            <i class="fas fa-hand-holding-medical"></i>
+                        </div>
+                        <div class="icon-info">
+                            <h5>AI Dental Image Analysis</h5>
+      <p >Users can upload images of their teeth, and our system uses AI to detect common dental issues like cavities, gum disease.</p>                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mt-sm-0 mt-4">
+                    <div class="feature-gd feature-gd-2">
+                        <div class="icon">
+                            <i class="fas fa-tooth"></i>
+                        </div>
+                        <div class="icon-info">
+                            <h5>Personalized Dental Health Reports</h5>
+<p> The website generates a detailed report that highlights detected problems, their severity.</p>                          
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mt-lg-0 mt-sm-5 mt-4">
+                    <div class="feature-gd feature-gd-2">
+                        <div class="icon">
+                            <i class="fas fa-briefcase-medical"></i>
+                        </div>
+                        <div class="icon-info">
+                            <h5>Daily Oral Health Tips</h5>
+<p>The platform offers personalized daily habits and preventive care tips to help users maintain a healthy smile.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mt-sm-5 mt-4">
+                    <div class="feature-gd feature-gd-2">
+                        <div class="icon">
+                            <i class="far fa-money-bill-alt"></i>
+                        </div>
+                        <div class="icon-info">
+                            <h5>Budget-Based clinic Recommendations</h5>
+                            Users can input their budget and location to receive suggestions for affordable dental clinics or doctors nearby.
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mt-sm-5 mt-4">
+                    <div class="feature-gd feature-gd-2">
+                        <div class="icon">
+                            <i class="fas fa-syringe"></i>
+                        </div>
+                        <div class="icon-info">
+                            <h5>Educational Resources</a></h5>
+<p>A dedicated section provides dental care-related  articles, and FAQs to educate users about various dental procedures and proper oral hygiene.</p>                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mt-sm-5 mt-4">
+                    <div class="feature-gd feature-gd-2">
+                        <div class="icon">
+                            <i class="fas fa-teeth-open"></i>
+                        </div>
+                        <div class="icon-info">
+                            <h5>Modern Methods of Teeth caring</h5>
+                            <p> Invisalign, clear aligners, and lingual braces are popular modern teeth straightening methods.</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //features section -->
+
+    
+
+   <!-- testimonials section -->
+<section class="w3l-testimonials pb-5" id="testimonials">
+    <div class="container py-md-5 py-4">
+        <h3 class="title-style text-center mb-5">What Our <span>Patients</span> Say!</h3>
+        <div class="owl-testimonial owl-carousel owl-theme mx-auto" style="max-width:1000px">
+            <div class="item">
+                <div class="slider-info">
+                    <div class="img-circle">
+                        <img src="assets/images/testi1.jpg" class="img-fluid rounded" alt="client image">
+                    </div>
+                    <div class="message-info">
+                        <span class="fa fa-quote-left mr-2"></span>
+                        <div class="message">"Dentition's AI image scanning and report generation provided invaluable insights into my dental health. The staff is incredibly friendly, and the general remedies were easy to follow. Highly recommend!"</div>
+                        <div class="name">- Johnson</div>
+                        <div class="desp ms-2">Businessman</div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="slider-info">
+                    <div class="img-circle">
+                        <img src="assets/images/testi2.jpg" class="img-fluid rounded" alt="client image">
+                    </div>
+                    <div class="message-info">
+                        <span class="fa fa-quote-left mr-2"></span>
+                        <div class="message">"Outstanding service! Dentition's budget-based clinic recommendations helped me find the perfect dental care within my budget. The infographics made it easy to understand my dental needs. Highly recommended!"</div>
+                        <div class="name">- Sami Wade</div>
+                        <div class="desp ms-2">Manager</div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="slider-info">
+                    <div class="img-circle">
+                        <img src="assets/images/testi3.jpg" class="img-fluid rounded" alt="client image">
+                    </div>
+                    <div class="message-info">
+                        <span class="fa fa-quote-left mr-2"></span>
+                        <div class="message">"Dentition's team was exceptional! From booking to treatment, seamless. The AI-generated reports gave me a clear understanding of my dental health. Expert care, friendly staff, and top-notch service. Highly recommend for dental needs!"</div>
+                        <div class="name">- Smith Roy</div>
+                        <div class="desp ms-2">Employee</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //testimonials section -->
+
+
+  <!-- Footer -->
+<footer>
+    <section class="w3l-call-to-action-6">
+        <div class="container py-md-5 py-sm-4 py-5">
+            <div class="d-sm-flex align-items-center justify-content-between">
+                <!-- Left Section -->
+                <div class="left-content-call">
+                    <h3 class="title-big">Scan Now!</h3>
+                    <p class="text-white mt-1">Begin the change today</p>
+                    <ul>
+                        <li><a href="scan.html" class="btn btn-style btn-style-2 mt-lg-0 mt-3">AI Scan</a></li>
+                    </ul>
+                </div>
+
+                <!-- Right Section -->
+                
+               <div class="col-md-2 col-4 footer-list-29 mt-md-0 mt-4">
+                     <ul style="color: whitesmoke;">
+                        
+                            <h6 class="footer-title-29" style="color: whitesmoke;">About</h6>
+                            <li ><a href="index.html">Home</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="service.html">Services</a></li>
+                            <li><a href="Remidies.html">Remedies</a></li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+
+        <!-- Copyright Section -->
+        <p class="copy-footer-29 text-center pt-lg-2 mt-5 pb-2">
+            © Dentora2025. All rights reserved by <strong>Kaviya And Kamatchi</strong>. Developed for <strong>FYR project</strong>.
+        </p>
+    </section>
+</footer>
+<!-- //Footer -->
+
+ 
+
+    
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fas fa-level-up-alt" aria-hidden="true"></span>
+    </button>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- //move top -->
+
+    <!-- common jquery plugin -->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <!-- //common jquery plugin -->
+
+    <script src="assets/js/owl.carousel.js"></script>
+    <!-- script for testimonials -->
+    <script>
+        $(document).ready(function () {
+            $('.owl-testimonial').owlCarousel({
+                loop: true,
+                margin: 0,
+                nav: true,
+                responsiveClass: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplaySpeed: 1000,
+                autoplayHoverPause: false,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    480: {
+                        items: 1,
+                        nav: false
+                    },
+                    667: {
+                        items: 1,
+                        nav: true
+                    },
+                    1000: {
+                        items: 1,
+                        nav: true
+                    }
+                }
+            })
+        })
+    </script>
+    <!-- //script for testimonials -->
+
+    <!-- theme switch js (light and dark)-->
+    <script src="assets/js/theme-change.js"></script>
+    <!-- //theme switch js (light and dark)-->
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!-- bootstrap -->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- //bootstrap -->
+    <!-- //Js scripts -->
+</body>
+
+</html>
