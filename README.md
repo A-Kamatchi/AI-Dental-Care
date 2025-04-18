@@ -9,7 +9,7 @@ An AI-powered dental care web app that scans dental images, gives condition repo
 - Informative dental content
 
 ## Tech Stack
-- **Frontend**: React.js
+- **Frontend**: Html,Css,JavaScript,React.js
 - **Backend**: Node.js, Express
 - **Database**: MongoDB
 - **AI Model**: CNN-based (ResNet50)
